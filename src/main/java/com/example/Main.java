@@ -1,16 +1,15 @@
 package com.example;
+import com.example.config.SpringConfiguration;
+import com.example.dao.EmployeeDAO;
 import com.example.models.Employees;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.util.ArrayList;
-import java.util.List;
 public class Main
     {
-        public static List<String> lines = new ArrayList<String>();
-
 
         public static void main( String[] args ) {
+            AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfiguration.class);
 
-            Employees e = new Employees();
             SalariedEmployee salariedEmployee = new SalariedEmployee("Alikhan", "Dzhakupov", 900.00);
 
            HourlyEmployee hourlyEmployee = new HourlyEmployee("Almas", "Ahaev", 25, 41);
@@ -39,6 +38,5 @@ public class Main
                        "Total earn: $%,.2f\n\n", currentEmployee.earnings());
            } // end for
 
-            System.out.println(e);
-       }
+        }
        }

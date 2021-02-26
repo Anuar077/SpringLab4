@@ -1,7 +1,9 @@
 package com.example.dao;
 
+import com.example.event.EmployeeCreateEvent;
 import com.example.models.Employees;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.stereotype.Component;
 
 
@@ -11,12 +13,12 @@ import java.util.List;
 
 
 @Component
-public class EmployeeDAO {
+public class EmployeeDAO implements ApplicationEventPublisherAware {
     private static int PEOPLE_COUNT;
 
     private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
     private static final String USERNAME = "postgres";
-    private static final String PASSWORD = "postgres";
+    private static final String PASSWORD = "1020";
 
     private static Connection connection;
 
@@ -47,7 +49,7 @@ public class EmployeeDAO {
 
                 em.setId(resultSet.getInt("id"));
                 em.setName(resultSet.getString("name"));
-                em.setEmail(resultSet.getString("email"));
+                em.setWorkplace(resultSet.getString("workplace"));
                 em.setAge(resultSet.getInt("age"));
 
                 people.add(em);
@@ -65,7 +67,7 @@ public class EmployeeDAO {
         try {
             Statement statement = connection.createStatement();
             String SQL = "INSERT INTO Person VALUES(" + 1 + ",'" + person.getName() +
-                    "'," + person.getAge() + ",'" + person.getEmail() + "')";
+                    "'," + person.getAge() + ",'" + person.getWorkplace() + "')";
 
             statement.executeUpdate(SQL);
         } catch (SQLException throwables) {
@@ -81,15 +83,15 @@ public class EmployeeDAO {
 
         //TODO create user in db
 
-        this.eventPublisher.publishEvent(new EmployesCreateEvent(this, employees));
+        this.eventPublisher.publishEvent(new EmployeeCreateEvent(this, employees));
     }
 
     public void update(Long id, Employees employees) {
-        System.out.println("UserDao.update");
+        System.out.println("EmployeeDao.update");
     }
 
     public void delete(Long id) {
-        System.out.println("UserDao.delete id: " + id);
+        System.out.println("EmployeeDao.delete id: " + id);
     }
 
     @Override
@@ -97,4 +99,4 @@ public class EmployeeDAO {
         this.eventPublisher = applicationEventPublisher;
     }
 }
-}
+

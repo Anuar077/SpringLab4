@@ -42,11 +42,22 @@ public class Employees {
         this.age = age;
     }
 
-    public String getEmail() {
+    public String getWorkplace() {
         return workplace;
     }
 
-    public void setEmail(String email) {
+    public void setWorkplace(String workplace) {
         this.workplace = workplace;
     }
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ",workplace="+
+                '}';
+    }
 }
+
+
