@@ -1,6 +1,7 @@
 package com.example.dao;
 
 import com.example.models.Employees;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
 
@@ -61,8 +62,6 @@ public class EmployeeDAO {
 
 
     public void save(Employees person) {
-
-
         try {
             Statement statement = connection.createStatement();
             String SQL = "INSERT INTO Person VALUES(" + 1 + ",'" + person.getName() +
@@ -72,9 +71,30 @@ public class EmployeeDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
-
     }
 
+    private ApplicationEventPublisher eventPublisher;
 
+    public void create(Employees employees) {
+
+        System.out.println("employess = " + employees);
+
+        //TODO create user in db
+
+        this.eventPublisher.publishEvent(new EmployesCreateEvent(this, employees));
+    }
+
+    public void update(Long id, Employees employees) {
+        System.out.println("UserDao.update");
+    }
+
+    public void delete(Long id) {
+        System.out.println("UserDao.delete id: " + id);
+    }
+
+    @Override
+    public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
+        this.eventPublisher = applicationEventPublisher;
+    }
+}
 }
