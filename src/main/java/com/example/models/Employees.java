@@ -55,7 +55,7 @@ public class Employees {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
-                ",workplace="+
+                ",workplace="+ workplace+
                 '}';
     }
 }

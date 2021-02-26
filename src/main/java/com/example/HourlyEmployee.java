@@ -6,12 +6,12 @@ public class HourlyEmployee extends Employee
        private double hours;
  
       // five-argument constructor
-      public HourlyEmployee( String fname, String secondname, double hourlyWage, double hoursWorked )
+      public HourlyEmployee(String name, String surname, double hourlyWage, double hoursWorked )
       {
-         super(fname,secondname);
+         super(name,surname);
          setWage( hourlyWage );
          setHours( hoursWorked );
-      } // end five-argument HourlyEmployee constructor
+      }
 
 
       public void setWage( double hourlyWage )
@@ -21,9 +21,9 @@ public class HourlyEmployee extends Employee
          else
             throw new IllegalArgumentException(
                "Error" );
-      } // end method setWage
+      }
 
-      // return wage
+
       public double getWage()
       {
          return wage;
@@ -37,23 +37,23 @@ public class HourlyEmployee extends Employee
          else
             throw new IllegalArgumentException(
                     "Error" );
-      } // end method setHours
+      }
 
-      // return hours worked
+
       public double getHours()
       {
          return hours;
-      } // end method getHours
+      }
 
-      // calculate earnings; override abstract method earnings in Employee
+      // calculate earnings
       @Override                                                           
       public double earnings()                                            
      {                                                                  
-      if ( getHours() <= 40 ) // no overtime
+      if ( getHours() <= 40 )
       return getWage() * getHours();                                
       else                                                             
       return 40 * getWage() + ( getHours() -  40 ) * getWage() *  1.5 ;
-      } // end method earnings                                            
+      }
 
 
       @Override                                                             

@@ -41,7 +41,7 @@ public class EmployeeDAO implements ApplicationEventPublisherAware {
 
         try {
             Statement statement = connection.createStatement();
-            String SQL = "SELECT * FROM Person";
+            String SQL = "SELECT * FROM Employees";
             ResultSet resultSet = statement.executeQuery(SQL);
 
             while(resultSet.next()) {
@@ -63,11 +63,11 @@ public class EmployeeDAO implements ApplicationEventPublisherAware {
     }
 
 
-    public void save(Employees person) {
+    public void save(Employees employee) {
         try {
             Statement statement = connection.createStatement();
-            String SQL = "INSERT INTO Person VALUES(" + 1 + ",'" + person.getName() +
-                    "'," + person.getAge() + ",'" + person.getWorkplace() + "')";
+            String SQL = "INSERT INTO Employees VALUES(" + 1 + ",'" + employee.getName() +
+                    "'," + employee.getAge() + ",'" + employee.getWorkplace() + "')";
 
             statement.executeUpdate(SQL);
         } catch (SQLException throwables) {
@@ -77,16 +77,14 @@ public class EmployeeDAO implements ApplicationEventPublisherAware {
 
     private ApplicationEventPublisher eventPublisher;
 
-    public void create(Employees employees) {
+    public void create(Employees employee) {
 
-        System.out.println("employess = " + employees);
+        System.out.println(employee);
 
-        //TODO create user in db
-
-        this.eventPublisher.publishEvent(new EmployeeCreateEvent(this, employees));
+        this.eventPublisher.publishEvent(new EmployeeCreateEvent(this, employee));
     }
 
-    public void update(Long id, Employees employees) {
+    public void update(Long id, Employees employee) {
         System.out.println("EmployeeDao.update");
     }
 

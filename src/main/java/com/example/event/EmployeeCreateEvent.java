@@ -1,19 +1,19 @@
 package com.example.event;
 
-import com.example.dao.EmployeeDAO;
+
 import com.example.models.Employees;
 import org.springframework.context.ApplicationEvent;
 
 public class EmployeeCreateEvent extends ApplicationEvent {
 
-    private Employees employees;
+    private Employees employee;
 
-    public EmployeeCreateEvent(Object source, Employees employees) {
+    public EmployeeCreateEvent(Object source, Employees employee) {
         super(source);
-        this.employees = employees;
+        this.employee = employee;
     }
 
-    public Employees getUser() {
-        return employees;
+    public Employees getEmployeeEvent() {
+        return employee;
     }
 }

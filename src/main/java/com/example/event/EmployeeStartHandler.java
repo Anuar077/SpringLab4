@@ -5,7 +5,7 @@ import org.springframework.context.event.ContextStartedEvent;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AppContextStartHandler implements ApplicationListener<ContextStartedEvent> {
+public class EmployeeStartHandler implements ApplicationListener<ContextStartedEvent> {
 
     @Override
     public void onApplicationEvent(ContextStartedEvent contextStartedEvent) {

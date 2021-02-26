@@ -1,47 +1,45 @@
 package com.example;
 
 public abstract class Employee {
-      private String fname;
-      private String sname;
+      private String name;
+      private String surname;
 
 
-      // three-argument constructor
+      // two argument constructor
       public Employee( String fn, String sn)
      {
-         fname = fn;
-         sname = sn;
+         name = fn;
+         surname = sn;
 
-} // end three-argument Employee constructor
+}
 
     // set first name
-    public String getFname() {
-        return fname;
+    public String getName() {
+        return name;
     }
 
-    public void setFname(String fname) {
-        this.fname = fname;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getSname() {
-        return sname;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setLname(String lname) {
-        this.sname = lname;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
 
-      // return social security number
 
-      // return String representation of Employee object
      @Override
       public String toString()
       {
          return String.format( "%s %s ",
-             getFname(), getSname());
-      } // end method toString
+             getName(), getSurname());
+      }
 
-      // abstract method overridden by concrete subclasses
-      public abstract double earnings(); // no implementation here
+
+      public abstract double earnings();
    } // end abstract class Employee
     
